@@ -7,16 +7,7 @@
 </head>
 
 <body ng-controller="PenaltyBoxController" class="penalty-box container">
-  <div id="chrono" class="row" ng-controller="ChronoController">
-    <div class="col-md-1">
-      <button class="btn btn-primary" ng-click="reset()">Reset</button>
-    </div>
-    <div class="col-md-1">
-      <h1>{{time |number:1}}</h1></div>
-    <div class="col-md-1">
-      <button class="btn btn-primary" ng-click="startStop()">Start / Stop</button>
-    </div>
-  </div>
+  <chrono></chrono>
   <div class="sheet">
     <div class="row">
       <div class="col-md-1 title">Period</div>
@@ -33,7 +24,9 @@
     <div ng-repeat="penalty in penalties" class="row">
       <div class="col-md-1 contrast">{{penalty.period}}</div>
       <div class="col-md-1 contrast">{{penalty.jam}}</div>
-      <div class="col-md-1 contrast"><input type="checkbox"></input></div>
+      <div class="col-md-1 contrast">
+        <input type="checkbox"></input>
+      </div>
       <div class="col-md-1">{{penalty.skater.team}}</div>
       <div class="col-md-1">{{penalty.skater.num}}</div>
       <div class="col-md-1">{{penalty.skater.pos}}</div>

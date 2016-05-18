@@ -28,5 +28,10 @@
     }
 
   }]);
-
+  app.directive('chrono', function() {
+    return {
+      restrict: 'E',
+      templateUrl: 'chrono.html'
+    }
+  });
 })();
