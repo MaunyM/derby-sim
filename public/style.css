@@ -1,0 +1,33 @@
+.penalty-box .sheet {
+  width: 1300px;
+}
+.penalty-box .sheet .title {
+  color: white;
+  background-color: black;
+}
+.penalty-box .sheet ul {
+  list-style-type: none;
+}
+.penalty-box .sheet .row div {
+  border-bottom: 1px solid black;
+  border-left: 1px solid black;
+}
+.penalty-box .sheet .row div:last-child {
+  border-right: 1px solid black;
+}
+.penalty-box .sheet .contrast {
+  background-color: #FFE8FF;
+}
+.penalty-box .sheet input.form-control {
+  height: 20px;
+  border : 0px;
+  padding: 0px;
+}
+
+.penalty-box .sheet .contrast input.form-control{
+  background-color: #FFE8FF;
+}
+
+.penalty-box .sheet .contrast input[type=checkbox]{
+  margin: 0px;
+}
