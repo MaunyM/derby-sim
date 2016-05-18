@@ -1,10 +1,13 @@
 (function() {
-  var app = angular.module('penaltyBox', ['chrono']);
-  app.controller('PenaltyBoxController', ['$scope', function($scope) {
+  var app = angular.module('penaltyBox', ['appChrono','gameServices']);
+  app.controller('PenaltyBoxController', ['$scope','Game', function($scope, Game) {
     $scope.penalties = penalties;
     $scope.number = 20;
     $scope.range = function(size) {
       return new Array(size);
+    }
+    $scope.call = function() {
+      Game.query();
     }
   }]);
   var penalties = [{

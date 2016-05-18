@@ -1,5 +1,5 @@
 (function() {
-  var app = angular.module('chrono', []);
+  var app = angular.module('appChrono', []);
   app.controller('ChronoController', ['$scope','$q', function($scope, $q) {
     var defer = $q.defer();
     $scope.time = 0;
