@@ -1,0 +1,56 @@
+{
+  "name": "Jam1",
+  "team": [{
+    "color": "red",
+    "jammer": {
+      "name": "Paon Paon Cui Cui",
+      "number": "123",
+      "jamStat": 200,
+      "isLead": false,
+      "scoringPass": 0
+    },
+    "blocker": [{
+      "name": "Racaille la Rouge",
+      "number": "1000",
+      "blockStat": 80
+    }, {
+      "name": "Crash Volta",
+      "number": "113",
+      "blockStat": 80
+    }, {
+      "name": "Petite Vertu",
+      "number": "1849",
+      "blockStat": 80
+    }, {
+      "name": "Hungry Bexly",
+      "number": "27",
+      "blockStat": 80
+    }]
+  }, {
+    "color": "black",
+    "jammer": {
+      "name": "Wulverine",
+      "number": "14",
+      "jamStat": 100,
+      "isLead": false,
+      "scoringPass": 0
+    },
+    "blocker": [{
+      "name": "Michel",
+      "number": "29",
+      "blockStat": 80
+    }, {
+      "name": "Pixel Rider",
+      "number": "63",
+      "blockStat": 80
+    }, {
+      "name": "Total Ripley",
+      "number": "1849",
+      "blockStat": 80
+    }, {
+      "name": "Nina hadès",
+      "number": "999",
+      "blockStat": 80
+    }]
+  }]
+}

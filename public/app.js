@@ -1,21 +1,15 @@
 (function() {
-  var app = angular.module('penaltyBox', ['appChrono', 'gameServices', 'btford.socket-io']);
+  var app = angular.module('penaltyBox', ['appChrono', 'appGame','gameServices', 'btford.socket-io']);
   app.factory('socket', function(socketFactory) {
     return socketFactory();
   })
-  app.controller('PenaltyBoxController', ['$scope', 'Game','socket', function($scope, Game, socket) {
-    $scope.messages = ["Yo"];
+  app.controller('PenaltyBoxController', ['$scope', function($scope) {
     $scope.penalties = penalties;
     $scope.number = 20;
     $scope.range = function(size) {
       return new Array(size);
     }
-    $scope.call = function() {
-      socket.emit('reload', '573dc723cb575520217bb638');
-    }
-    socket.on('event', function(event) {
-      $scope.messages.push(event.message);
-    });
+
   }]);
 
   var penalties = [{

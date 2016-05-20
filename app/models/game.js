@@ -3,12 +3,23 @@ var Schema = mongoose.Schema;
 
 var GameSchema = new Schema({
   name: String,
+  startTime: Date,
   updated: {
     type: Date
   },
-  player: [{
-    name: String,
-    number: String
+  team: [{
+    jammer : {
+      name: String,
+      number: String,
+      jamStat: Number,
+      isLead: Boolean,
+      scoringPass : Number
+    },
+    blocker: [{
+      name: String,
+      number: String,
+      blockStat: Number,
+    }]
   }]
 });
 

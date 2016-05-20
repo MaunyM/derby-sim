@@ -7,10 +7,7 @@
 </head>
 
 <body ng-controller="PenaltyBoxController" class="penalty-box container">
-  <button class="btn btn-primary" ng-click="call()">Test</button>
-  <div ng-repeat="message in messages track by $index">
-    {{message}}
-  </div>
+  <game></game>
   <chrono></chrono>
   <div class="sheet">
     <div class="row">
@@ -90,6 +87,7 @@
   <script type="text/javascript" src="lib/socket.min.js"></script>
   <script type="text/javascript" src="app.js"></script>
   <script type="text/javascript" src="chronoApp.js"></script>
+  <script type="text/javascript" src="gameApp.js"></script>
   <script type="text/javascript" src="services/gameServices.js"></script>
 
 </body>

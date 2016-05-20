@@ -8,6 +8,8 @@ var io = require('socket.io')(http);
 var Game = require('./app/models/game');
 var gameController = require('./app/controllers/gameController');
 
+var gameData = require('./app/data/game.json');
+
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
   extended: true
@@ -25,18 +27,7 @@ router.use(function(req, res, next) {
 
 router.route('/games')
   .post(function(req, res) {
-    var game = new Game();
-    game.name = req.body.name;
-    game.player.push({
-      name: 'Sailor Moule',
-      number: '333',
-      penaltyPerGame: '6'
-    });
-    game.player.push({
-      name: 'Cat Vador',
-      number: '36',
-      penaltyPerGame: '2'
-    });
+    var game = new Game(gameData);
     game.save(function(err) {
       if (err)
         res.send(err);
@@ -96,7 +87,18 @@ io.on('connection', function(socket) {
   socket.on('disconnect', function() {
     console.log('user disconnected');
   });
-  socket.on('reload', function(gameId) {
+  socket.on('start', function(gameId) {
+    var game = new Game(gameData);
+    game.save(function(err) {
+      if (err)
+        io.emit('error', err);
+      io.emit('gameStarted', {
+        "id": game._id
+      });
+    });
+  });
+  socket.on('check', function(gameId) {
+    console.log("check: " + gameId);
     Game.findById(gameId, function(err, game) {
       if (err)
         console.log('Erreur au chargement du game: ' + err);
