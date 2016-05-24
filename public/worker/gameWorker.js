@@ -13,6 +13,7 @@ this.onmessage = function(event) {
   }
 }
 
+//Wake up the game
 function checkGame() {
   if (gameRunning) {
     postMessage({

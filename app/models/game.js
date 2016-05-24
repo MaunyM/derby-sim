@@ -8,17 +8,24 @@ var GameSchema = new Schema({
     type: Date
   },
   team: [{
+    color : String,
     jammer : {
       name: String,
       number: String,
       jamStat: Number,
+      speed: Number, //lap Time
       isLead: Boolean,
-      scoringPass : Number
+      inEngagmentZone: Boolean,
+      scoringPass : {
+        start : Date,
+        number : Number
+      }
     },
     blocker: [{
       name: String,
       number: String,
       blockStat: Number,
+      penaltyStat: Number
     }]
   }]
 });

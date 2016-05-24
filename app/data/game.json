@@ -6,51 +6,67 @@
       "name": "Paon Paon Cui Cui",
       "number": "123",
       "jamStat": 200,
+      "speed": 7,
       "isLead": false,
-      "scoringPass": 0
+      "inEngagmentZone": true,
+      "scoringPass": {
+        "number": 0
+      }
     },
     "blocker": [{
       "name": "Racaille la Rouge",
       "number": "1000",
-      "blockStat": 80
+      "blockStat": 80,
+      "penaltyStat": 10
     }, {
       "name": "Crash Volta",
       "number": "113",
-      "blockStat": 80
+      "blockStat": 80,
+      "penaltyStat": 10
     }, {
       "name": "Petite Vertu",
       "number": "1849",
-      "blockStat": 80
+      "blockStat": 80,
+      "penaltyStat": 10
     }, {
       "name": "Hungry Bexly",
       "number": "27",
-      "blockStat": 80
+      "blockStat": 80,
+      "penaltyStat": 10
     }]
   }, {
     "color": "black",
     "jammer": {
       "name": "Wulverine",
       "number": "14",
+      "speed": 8,
       "jamStat": 100,
       "isLead": false,
-      "scoringPass": 0
+      "inEngagmentZone": true,
+      "scoringPass": {
+        "number": 0
+      }
     },
     "blocker": [{
       "name": "Michel",
       "number": "29",
-      "blockStat": 80
+      "blockStat": 80,
+      "penaltyStat": 10
     }, {
       "name": "Pixel Rider",
       "number": "63",
-      "blockStat": 80
+      "blockStat": 80,
+      "penaltyStat": 10
     }, {
       "name": "Total Ripley",
       "number": "1849",
-      "blockStat": 80
+      "blockStat": 80,
+      "penaltyStat": 10
     }, {
       "name": "Nina hadès",
       "number": "999",
-      "blockStat": 80
+      "blockStat": 80,
+      "penaltyStat": 10
     }]
   }]
 }

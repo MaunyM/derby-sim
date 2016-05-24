@@ -3,6 +3,7 @@
   app.controller('GameController', ['$scope', '$q', 'socket', function($scope, $q, socket) {
     var defer = $q.defer();
     $scope.messages = [];
+    $scope.startTime;
     if (!!window.Worker) {
       var worker;
       $scope.start = function() {
@@ -22,8 +23,8 @@
       }, function(raison) {
         console.log('Game promise Failed');
       }, function(update) {
-        console.log(update);
         if (update.type == "check")
+        //Tell the server, we are still interesting
           socket.emit('check', update.id);
       });
     }
@@ -34,7 +35,10 @@
       });
     });
     socket.on('event', function(event) {
-      $scope.messages.push(event.message);
+      if (event.type == "jamStart") {
+        $scope.startTime = new Date(event.time);
+      }
+      $scope.messages.push(Math.floor((new Date(event.time) - $scope.startTime) / 1000) +  " : " + event.message);
     });
 
   }]);
