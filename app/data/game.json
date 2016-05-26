@@ -13,26 +13,33 @@
         "number": 0
       }
     },
-    "blocker": [{
+    "blockers": [{
       "name": "Racaille la Rouge",
       "number": "1000",
       "blockStat": 80,
-      "penaltyStat": 10
+      "penaltyStat": 10,
+      "onTheTrack": true
     }, {
       "name": "Crash Volta",
-      "number": "113",
+      "number": "111",
       "blockStat": 80,
-      "penaltyStat": 10
+      "penaltyStat": 10,
+      "onTheTrack": true,
+      "penalties": {
+
+      }
     }, {
       "name": "Petite Vertu",
       "number": "1849",
       "blockStat": 80,
-      "penaltyStat": 10
+      "penaltyStat": 10,
+      "onTheTrack": true
     }, {
       "name": "Hungry Bexly",
       "number": "27",
       "blockStat": 80,
-      "penaltyStat": 10
+      "penaltyStat": 10,
+      "onTheTrack": true
     }]
   }, {
     "color": "black",
@@ -47,26 +54,30 @@
         "number": 0
       }
     },
-    "blocker": [{
+    "blockers": [{
       "name": "Michel",
       "number": "29",
       "blockStat": 80,
-      "penaltyStat": 10
+      "penaltyStat": 10,
+      "onTheTrack": true
     }, {
       "name": "Pixel Rider",
-      "number": "63",
+      "number": "6",
       "blockStat": 80,
-      "penaltyStat": 10
+      "penaltyStat": 10,
+      "onTheTrack": true
     }, {
       "name": "Total Ripley",
-      "number": "1849",
+      "number": "63",
       "blockStat": 80,
-      "penaltyStat": 10
+      "penaltyStat": 10,
+      "onTheTrack": true
     }, {
       "name": "Nina hadès",
       "number": "999",
       "blockStat": 80,
-      "penaltyStat": 10
+      "penaltyStat": 10,
+      "onTheTrack": true
     }]
   }]
 }

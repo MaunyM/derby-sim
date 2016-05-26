@@ -1,0 +1,8 @@
+
+<div id="game" ng-controller="TeamController">
+  <h4>Team {{team.color}}</h4>
+  <span class="glyphicon glyphicon-repeat" aria-hidden="true" ng-hide="team.jammer.inEngagmentZone"></span><span class="glyphicon glyphicon-star {{team.jammer.status}}" aria-hidden="true"></span>{{team.jammer.name}}
+  <div ng-repeat="blocker in team.blockers track by $index">
+    <span class="glyphicon glyphicon-{{blocker.icon}}" aria-hidden="true"></span>{{blocker.name}} #{{blocker.number}}
+  </div>
+</div>

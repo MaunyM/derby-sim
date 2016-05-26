@@ -1,4 +1,4 @@
-var yieldTime = 1000;
+var yieldTime = 500;
 var gameRunning = false;
 var gameId;
 

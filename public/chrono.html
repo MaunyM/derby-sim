@@ -1,10 +1,15 @@
 <div id="chrono" class="row" ng-controller="ChronoController">
   <div class="col-md-1">
-    <button class="btn btn-primary" ng-click="reset()">Reset</button>
+    <button class="btn btn-default" ng-click="reset()">Reset</button>
   </div>
   <div class="col-md-1">
     <h1>{{time |number:1}}</h1></div>
   <div class="col-md-1">
-    <button class="btn btn-primary" ng-click="startStop()">Start / Stop</button>
+    <button class="btn btn-default" ng-click="startStop()">Start / Stop</button>
+  </div>
+  <div ng-repeat="chair in chairs">
+    <div class="col-md-1">
+      <button class="btn btn-default" ng-click="">{{chair.message}}</button>
+    </div>
   </div>
 </div>

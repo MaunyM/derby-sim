@@ -2,7 +2,7 @@ var Event = require('../models/event');
 
 module.exports.lead = function(jammer) {
   return {
-    type: 'jam',
+    type: 'call',
     time: new Date(),
     message: jammer.name + " prend le lead"
   }
@@ -34,7 +34,7 @@ module.exports.scoringPass = function(jammer) {
 
 module.exports.penalty = function(player, team) {
   return {
-    type: 'penalty',
+    type: 'call',
     time: new Date(),
     message: player.number + " " + team.color +" cutting"
   }
@@ -45,5 +45,14 @@ module.exports.jamStart = function() {
     type: 'jamStart',
     time: new Date(),
     message: "Debut du jam"
+  }
+}
+
+module.exports.sitPenaltyBox = function(player) {
+  return {
+    type: 'enterPenaltyBox',
+    time: new Date(),
+    message: player.name  + " entre en penalty box",
+    player: player
   }
 }

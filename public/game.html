@@ -1,13 +1,26 @@
 <div id="game" ng-controller="GameController">
   <div class="row">
-    <div class="col-md-1">
-      <button class="btn btn-primary" ng-click="start()">Start game</button>
+    <div class="col-md-4">
+      <button class="btn btn-default" ng-click="start()">Start game</button>
+      <button class="btn btn-default" ng-click="stop()">Stop game</button>
+      <div ng-repeat="message in messages track by $index  ">
+        {{message}}
+      </div>
     </div>
-    <div class="col-md-1">
-      <button class="btn btn-primary" ng-click="stop()">Stop game</button>
+    <div class="col-md-3">
+      <team num="0">/<team>
     </div>
-  </div>
-  <div ng-repeat="message in messages track by $index">
-    {{message}}
+    <div class="col-md-3">
+      <team num="1">/<team>
+    </div>
+    <div class="col-md-2">
+      <h4>Légende</h4>
+      <div><span class="glyphicon glyphicon-repeat"></span><small> Hors zone d'engagement</small></div>
+      <div><span class="glyphicon glyphicon-star"></span><small> Jammeuse</small></div>
+      <div><span class="glyphicon glyphicon-star leadJammer"></span><small> Lead jammeuse</small></div>
+      <div><span class="glyphicon glyphicon-arrow-down"></span><small> Assis en prison</small></div>
+      <div><span class="glyphicon glyphicon-chevron-left"></span><small> Va en prison</small></div>
+      <span
+    </div>
   </div>
 </div>

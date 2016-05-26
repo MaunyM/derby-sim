@@ -1,12 +1,12 @@
 var Event = require('../models/event');
 var eventController = require('../controllers/eventController');
 var Game = require('../models/game');
-var maxPenaltyPower = 1000;
+var maxPenaltyPower = 500;
 
 module.exports.update = function(game) {
   var events = [];
-  var timeSinceLastUpdate = Math.floor((new Date - game.updated) / 1000);
-  if (!game.updated || timeSinceLastUpdate > 1) {
+  var timeSinceLastUpdate = new Date - game.updated;
+  if (!game.updated || timeSinceLastUpdate > 1000) {
     console.log("TimeSinceLastUpdate : " + timeSinceLastUpdate);
     game.updated = new Date;
     game.save();
@@ -15,6 +15,8 @@ module.exports.update = function(game) {
     } else {
       wallBlock(game.team[0], game.team[1], events)
       wallBlock(game.team[1], game.team[0], events)
+      penalty(game.team[0], events);
+      penalty(game.team[1], events);
       game.save();
     }
   }
@@ -30,22 +32,16 @@ var jamStart = function(game, events) {
 
 var wallBlock = function(teamA, teamB, events) {
   var pass = true;
-  //Is jamme in the wall ?
+  //Is jammer in the wall ?
   if (teamB.jammer.inEngagmentZone || ((teamB.jammer.scoringPass.start.getTime() + (teamB.jammer.speed * 1000)) < new Date().getTime())) {
     if (!teamB.jammer.inEngagmentZone) {
-      events.push(eventController.enterEngagementZone(teamB.jammer));
+      //events.push(eventController.enterEngagementZone(teamB.jammer));
     }
     teamB.jammer.inEngagmentZone = true;
-    teamA.blocker.forEach(function(blocker) {
-      if (callPenalty(blocker)) {
-        events.push(eventController.penalty(blocker, teamA));
-      }
-      var block  = simpleBlock(blocker, teamB.jammer);
-      pass = pass && !block;
-      if (block) {
-        console.log(blocker.name + " bloque " + teamB.jammer.name);
-      } else {
-        console.log(teamB.jammer.name + " passe " + blocker.name);
+    teamA.blockers.forEach(function(blocker) {
+      if (blocker.onTheTrack) {
+        checkPenalty(blocker, teamA, events);
+        pass = pass && !simpleBlock(blocker, teamB.jammer);
       }
     })
 
@@ -68,11 +64,37 @@ var wallBlock = function(teamA, teamB, events) {
   }
 }
 
+var penalty = function(team, events) {
+  var blockerSitInPenaltyBox = 0;
+  //On compte combien il y a de bloqueuses en PB
+  team.blockers.forEach(function(player) {
+    if (player.penalty.sittingTime)
+      blockerSitInPenaltyBox += 1;
+  });
+  team.blockers.forEach(function(player) {
+    if (blockerSitInPenaltyBox < 2 && penalty.callTime && ((penalty.callTime.getTime() + 8000) < new Date().getTime())) {
+      //Arrive en penalty Box
+      penalty.sittingTime = new Date();
+      events.push(eventController.sitPenaltyBox(player));
+      blockerSitInPenaltyBox += 1;
+    }
+  });
+}
+
+
 var simpleBlock = function(blocker, jammer) {
   var blockPower = Math.floor(Math.random() * blocker.blockStat);
   var jamPower = Math.floor(Math.random() * jammer.jamStat);
-  return  blockPower > jamPower
+  console.log(blocker.name + " vs " + jammer.name)
+  return blockPower > jamPower
 }
-var callPenalty = function(blocker, events) {
-  return blocker.penaltyStat > Math.floor(Math.random() * maxPenaltyPower);
+var checkPenalty = function(blocker, team, events) {
+  var gotPenalty = blocker.penaltyStat > Math.floor(Math.random() * maxPenaltyPower);
+  if (gotPenalty) {
+    blocker.onTheTrack = false;
+    blocker.penalty = {
+      callTime: new Date()
+    }
+    events.push(eventController.penalty(blocker, team));
+  }
 }

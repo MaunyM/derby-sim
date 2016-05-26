@@ -1,9 +1,10 @@
 (function() {
-  var app = angular.module('appGame', []);
-  app.controller('GameController', ['$scope', '$q', 'socket', function($scope, $q, socket) {
+  var app = angular.module('appGame', ['appTeam', 'gameServices']);
+  app.controller('GameController', ['$scope', '$q', 'socket', 'Game', function($scope, $q, socket, Game) {
     var defer = $q.defer();
     $scope.messages = [];
     $scope.startTime;
+    $scope.gameId;
     if (!!window.Worker) {
       var worker;
       $scope.start = function() {
@@ -29,6 +30,7 @@
       });
     }
     socket.on('gameStarted', function(data) {
+      $scope.gameId = data.id;
       worker.postMessage({
         'msg': 'gameStarted',
         'id': data.id
@@ -38,7 +40,17 @@
       if (event.type == "jamStart") {
         $scope.startTime = new Date(event.time);
       }
-      $scope.messages.push(Math.floor((new Date(event.time) - $scope.startTime) / 1000) +  " : " + event.message);
+      if (event.type == "call") {
+        $scope.messages.push(Math.floor((new Date(event.time) - $scope.startTime) / 1000) + " : " + event.message);
+      }
+      if (event.type == "enterPenaltyBox") {
+        $scope.$emit('enterPenaltyBox', event.player);
+      }
+      Game.get({
+        gameId: $scope.gameId
+      }, function(game) {
+        $scope.$broadcast('teams-updated', game.team);
+      })
     });
 
   }]);

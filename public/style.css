@@ -31,3 +31,7 @@
 .penalty-box .sheet .contrast input[type=checkbox]{
   margin: 0px;
 }
+
+#game .leadJammer{
+  color: red;
+}

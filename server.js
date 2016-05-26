@@ -7,8 +7,11 @@ var io = require('socket.io')(http);
 
 var Game = require('./app/models/game');
 var gameController = require('./app/controllers/gameController');
+var PBTController = require('./app/controllers/PBTController');
 
 var gameData = require('./app/data/game.json');
+
+var nso = {}
 
 app.use(express.static('public'));
 app.use(bodyParser.urlencoded({
@@ -98,7 +101,6 @@ io.on('connection', function(socket) {
     });
   });
   socket.on('check', function(gameId) {
-    console.log("check: " + gameId);
     Game.findById(gameId, function(err, game) {
       if (err)
         console.log('Erreur au chargement du game: ' + err);
