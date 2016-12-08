@@ -9,7 +9,7 @@
       }
       $scope.team.blockers.forEach(function(player) {
         if (player.onTheTrack) {
-        } else if (player.penalty && player.penalty.sittingTime){
+        } else if (player.inBox){
           player.icon = "glyphicon glyphicon-arrow-down"
         } else {
           player.icon = "chevron-left"

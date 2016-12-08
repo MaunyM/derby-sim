@@ -7,7 +7,6 @@ module.exports.update = function(game) {
   var events = [];
   var timeSinceLastUpdate = new Date - game.updated;
   if (!game.updated || timeSinceLastUpdate > 1000) {
-    console.log("TimeSinceLastUpdate : " + timeSinceLastUpdate);
     game.updated = new Date;
     game.save();
     if (!game.startTime) {
@@ -46,7 +45,6 @@ var wallBlock = function(teamA, teamB, events) {
     })
 
     if (pass) {
-      console.log(teamB.jammer + " passe le mur");
       if (!teamA.jammer.isLead && !teamB.jammer.isLead) {
         events.push(eventController.lead(teamB.jammer));
         teamB.jammer.isLead = true;
@@ -65,18 +63,10 @@ var wallBlock = function(teamA, teamB, events) {
 }
 
 var penalty = function(team, events) {
-  var blockerSitInPenaltyBox = 0;
-  //On compte combien il y a de bloqueuses en PB
   team.blockers.forEach(function(player) {
-    if (player.penalty.sittingTime)
-      blockerSitInPenaltyBox += 1;
-  });
-  team.blockers.forEach(function(player) {
-    if (blockerSitInPenaltyBox < 2 && penalty.callTime && ((penalty.callTime.getTime() + 8000) < new Date().getTime())) {
-      //Arrive en penalty Box
-      penalty.sittingTime = new Date();
-      events.push(eventController.sitPenaltyBox(player));
-      blockerSitInPenaltyBox += 1;
+    if (player.penalty.callTime && ((player.penalty.callTime.getTime() + 8000) < new Date().getTime())) {
+      events.push(eventController.enterPenaltyBox(player, team.color));
+      player.penalty = null ;
     }
   });
 }
@@ -85,7 +75,6 @@ var penalty = function(team, events) {
 var simpleBlock = function(blocker, jammer) {
   var blockPower = Math.floor(Math.random() * blocker.blockStat);
   var jamPower = Math.floor(Math.random() * jammer.jamStat);
-  console.log(blocker.name + " vs " + jammer.name)
   return blockPower > jamPower
 }
 var checkPenalty = function(blocker, team, events) {

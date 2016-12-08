@@ -4,9 +4,7 @@ var Schema = mongoose.Schema;
 var GameSchema = new Schema({
   name: String,
   startTime: Date,
-  updated: {
-    type: Date
-  },
+  updated: Date,
   team: [{
     color: String,
     jammer: {
@@ -27,11 +25,9 @@ var GameSchema = new Schema({
       blockStat: Number,
       penaltyStat: Number,
       onTheTrack: Boolean,
+      inBox: Boolean,
       penalty: {
         callTime: Date,
-        sittingTime: Date,
-        standTime: Date,
-        doneTime: Date,
         name: String
       }
     }]

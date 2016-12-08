@@ -48,11 +48,22 @@ module.exports.jamStart = function() {
   }
 }
 
-module.exports.sitPenaltyBox = function(player) {
+module.exports.enterPenaltyBox = function(player, team) {
   return {
     type: 'enterPenaltyBox',
     time: new Date(),
     message: player.name  + " entre en penalty box",
-    player: player
+    player: player,
+    team : team
+  }
+}
+
+module.exports.sitPenaltyBox = function(player, line) {
+  return {
+    type: 'sitPenaltyBox',
+    time: new Date(),
+    message: player.name  + " s'assoit en penalty box",
+    player: player,
+    line : line
   }
 }
